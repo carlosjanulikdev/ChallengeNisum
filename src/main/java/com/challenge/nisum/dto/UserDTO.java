@@ -16,7 +16,7 @@ public class UserDTO {
     private String name;
 
     @Column(name="email")
-    @Email
+    @
     private String email;
 
     @Column(name="password")
