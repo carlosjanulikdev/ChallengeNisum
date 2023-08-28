@@ -24,7 +24,7 @@ public class UserService implements IUserService {
                                    userDTO.getEmail(),
                                    userDTO.getPassword(),
                                    userDTO.getPhones().stream().map(phoneDTO ->
-                                           new Phone(phoneDTO.getNumber(), phoneDTO.getCityCode(), phoneDTO.getContryCode()))
+                                           new Phone(phoneDTO.getNumber(), phoneDTO.getCityCode(), phoneDTO.getCountryCode()))
                                                 .collect(Collectors.toList()));
 
         return userRepository.save(user);
