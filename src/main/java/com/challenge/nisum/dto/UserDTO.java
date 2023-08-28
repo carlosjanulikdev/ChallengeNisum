@@ -1,8 +1,8 @@
 package com.challenge.nisum.dto;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class UserDTO {
     private String name;
 
     @Column(name="email")
-    @
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "El email no tiene un formato válido (ejemplo:aaaaaaa@dominio.cl)")
     private String email;
 
     @Column(name="password")
