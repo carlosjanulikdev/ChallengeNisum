@@ -12,6 +12,6 @@ INSERT INTO users (id, name, email, password, created, is_active ) VALUES (1000,
 
 INSERT INTO phones (id, number, city_code, user_id) VALUES (10001, '1234567', 1, 1000);
 INSERT INTO phones (id, number, city_code, user_id) VALUES (10002, '7654321', 3, 1000);
-INSERT INTO phones (id, number, city_code, user_id) VALUES (10003, '+3412112', 1, 57);
+INSERT INTO phones (id, number, city_code, user_id) VALUES (10003, '+3412112', 1, 1000);
 
 
