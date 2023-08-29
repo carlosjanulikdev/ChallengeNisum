@@ -20,7 +20,7 @@ public class UserRequest {
     private String email;
 
     @Column(name="password")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "La password debe tener mínimo 8 caracteres, al menos una letra y un número")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}$", message = "La password debe tener mínimo 7 caracteres, al menos una letra y un número")
     private String password;
 
     private List<PhoneRequest> phones = new ArrayList<>();
