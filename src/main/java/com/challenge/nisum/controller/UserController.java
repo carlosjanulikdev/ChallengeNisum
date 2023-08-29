@@ -1,8 +1,8 @@
 package com.challenge.nisum.controller;
 
-import com.challenge.nisum.dto.RegisteredUserDTO;
-import com.challenge.nisum.dto.UserDTO;
 import com.challenge.nisum.model.User;
+import com.challenge.nisum.request.UserRequest;
+import com.challenge.nisum.response.UserResponse;
 import com.challenge.nisum.service.IUserService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -41,9 +41,9 @@ public class UserController {
 
 
     @PostMapping(value = "/register")
-    public ResponseEntity<RegisteredUserDTO> register(@Valid @RequestBody UserDTO userDTO) {
-        logger.info("Create user:{}", userDTO);
-        RegisteredUserDTO newUser = userService.register(userDTO);
+    public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRequest userRequest) {
+        logger.info("Create user:{}", userRequest);
+        UserResponse newUser = userService.register(userRequest);
 
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }

@@ -1,14 +1,14 @@
 package com.challenge.nisum.service;
 
-import com.challenge.nisum.dto.RegisteredUserDTO;
-import com.challenge.nisum.dto.UserDTO;
 import com.challenge.nisum.model.User;
+import com.challenge.nisum.request.UserRequest;
+import com.challenge.nisum.response.UserResponse;
 
 import java.util.List;
 
 public interface IUserService {
 
-    RegisteredUserDTO register(UserDTO userDTO);
+    UserResponse register(UserRequest userRequest);
     User findById(Long id);
     void deleteById(Long id);
     List<User> findAll();

@@ -1,4 +1,4 @@
-package com.challenge.nisum.dto;
+package com.challenge.nisum.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class PhoneDTO {
+public class PhoneRequest {
 
     @Column(name="number")
     @NotNull(message = "El numero es obligatorio")
@@ -22,10 +22,10 @@ public class PhoneDTO {
     @NotNull(message = "El country_code es obligatorio")
     private String countryCode;
 
-    public PhoneDTO() {
+    public PhoneRequest() {
     }
 
-    public PhoneDTO(String number, String cityCode, String countryCode) {
+    public PhoneRequest(String number, String cityCode, String countryCode) {
         this.number = number;
         this.cityCode = cityCode;
         this.countryCode = countryCode;

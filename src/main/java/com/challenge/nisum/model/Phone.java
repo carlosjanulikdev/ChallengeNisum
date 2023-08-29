@@ -23,15 +23,13 @@ public class Phone {
     @NotNull(message = "El numero es obligatorio")
     private String number;
 
-    @Column(name="city_code")
-    @JsonProperty("city_code")
-    @NotNull(message = "El city_code es obligatorio")
-    private String cityCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="city_code", nullable=false)
+    private City city;
 
-    @Column(name="country_code")
-    @JsonProperty("country_code")
-    @NotNull(message = "El country_code es obligatorio")
-    private String countryCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="country_code", nullable=false)
+    private Country country;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -42,17 +40,18 @@ public class Phone {
         return "Phone{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
-                ", cityCode='" + cityCode + '\'' +
-                ", countryCode='" + countryCode + '\'' +
+                ", city=" + city +
+                ", country=" + country +
+                ", user=" + user +
                 '}';
     }
 
     public Phone() {
     }
 
-    public Phone(String number, String cityCode, String countryCode) {
+    public Phone(String number, City city, Country country) {
         this.number = number;
-        this.cityCode = cityCode;
-        this.countryCode = countryCode;
+        this.city = city;
+        this.country = country;
     }
 }

@@ -1,4 +1,4 @@
-package com.challenge.nisum.dto;
+package com.challenge.nisum.request;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class UserDTO {
+public class UserRequest {
 
     @Column(name="name")
     @NotNull(message = "El nombre es obligatorio")
@@ -23,6 +23,6 @@ public class UserDTO {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "La password debe tener mínimo 8 caracteres, al menos una letra y un número")
     private String password;
 
-    private List<PhoneDTO> phones = new ArrayList<>();
+    private List<PhoneRequest> phones = new ArrayList<>();
 
 }

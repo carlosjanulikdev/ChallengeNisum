@@ -1,18 +1,12 @@
-package com.challenge.nisum.dto;
+package com.challenge.nisum.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @Data
-public class RegisteredUserDTO {
+public class UserResponse {
 
     private Long id;
 
@@ -30,7 +24,7 @@ public class RegisteredUserDTO {
     @JsonProperty("is_active")
     private Boolean isActive;
 
-    public RegisteredUserDTO(Long id, String name, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, String token, Boolean isActive) {
+    public UserResponse(Long id, String name, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, String token, Boolean isActive) {
         this.id = id;
         this.name = name;
         this.created = created;
