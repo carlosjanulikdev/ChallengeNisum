@@ -79,7 +79,9 @@ public class User {
         this.created = LocalDateTime.now();
         this.isActive = true;
 
-        phones.stream().forEach( p -> this.addPhone(p));
+        if(phones != null) {
+            phones.stream().forEach(p -> this.addPhone(p));
+        }
     }
 
     public LocalDateTime getLastLogin(){

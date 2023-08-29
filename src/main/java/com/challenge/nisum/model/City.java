@@ -34,4 +34,14 @@ public class City {
                 ", country=" + country +
                 '}';
     }
+
+    public City() {
+
+    }
+
+    public City(Long id, String name, Country country) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+    }
 }
