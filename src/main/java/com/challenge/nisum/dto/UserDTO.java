@@ -20,7 +20,7 @@ public class UserDTO {
     private String email;
 
     @Column(name="password")
-    @NotNull(message = "La password es obligatoria")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "La password debe tener mínimo 8 caracteres, al menos una letra y un número")
     private String password;
 
     private List<PhoneDTO> phones = new ArrayList<>();
