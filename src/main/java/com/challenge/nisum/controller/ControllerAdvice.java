@@ -1,6 +1,7 @@
 package com.challenge.nisum.controller;
 
 import com.challenge.nisum.dto.ErrorDTO;
+import com.challenge.nisum.exception.CityOrCountryNotFoundException;
 import com.challenge.nisum.exception.UserExistingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,15 @@ public class ControllerAdvice {
 
     @ExceptionHandler(value = UserExistingException.class)
     public ResponseEntity<ErrorDTO> userExistingExceptionHandler(UserExistingException e){
+        ErrorDTO errorDTO = ErrorDTO.builder()
+                .message(e.getMessage())
+                .build();
+
+        return new ResponseEntity<>(errorDTO, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(value = CityOrCountryNotFoundException.class)
+    public ResponseEntity<ErrorDTO> cityOrCountryNotFoundExceptionHandler(CityOrCountryNotFoundException e){
         ErrorDTO errorDTO = ErrorDTO.builder()
                 .message(e.getMessage())
                 .build();

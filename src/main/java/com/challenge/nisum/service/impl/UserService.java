@@ -1,14 +1,11 @@
 package com.challenge.nisum.service.impl;
 
-import com.challenge.nisum.exception.CityNotFoundException;
-import com.challenge.nisum.exception.CountryNotFoundException;
+import com.challenge.nisum.exception.CityOrCountryNotFoundException;
 import com.challenge.nisum.exception.UserExistingException;
 import com.challenge.nisum.model.City;
-import com.challenge.nisum.model.Country;
 import com.challenge.nisum.model.Phone;
 import com.challenge.nisum.model.User;
 import com.challenge.nisum.repository.CityRepository;
-import com.challenge.nisum.repository.CountryRepository;
 import com.challenge.nisum.repository.UserRepository;
 import com.challenge.nisum.request.PhoneRequest;
 import com.challenge.nisum.request.UserRequest;
@@ -31,8 +28,6 @@ public class UserService implements IUserService {
 
     @Autowired
     private CityRepository cityRepository;
-    @Autowired
-    private CountryRepository countryRepository;
     @Autowired
     private UserRepository userRepository;
 
@@ -62,15 +57,16 @@ public class UserService implements IUserService {
     }
 
     private Phone fromPhoneRequestToPhone(PhoneRequest phoneRequest) {
-        Country country = countryRepository.findById(Long.parseLong(phoneRequest.getCountryCode()))
-                .orElseThrow(() ->
-                        new CountryNotFoundException("No existe el pais con id: "+phoneRequest.getCountryCode()));
+        City city = cityRepository.findByIdAndCountryId(Long.parseLong(phoneRequest.getCityCode()),
+                                                        Long.parseLong(phoneRequest.getCountryCode()))
+                        .orElseThrow(() -> {
+                            logger.error("City {} or country {} not found", phoneRequest.getCityCode(), phoneRequest.getCountryCode());
 
-        City city = cityRepository.findById(Long.parseLong(phoneRequest.getCityCode()))
-                .orElseThrow(() ->
-                        new CityNotFoundException("No existe la ciudad con id: "+phoneRequest.getCityCode()));
+                            return new CityOrCountryNotFoundException("No existe la relacion entre la ciudad con id: " + phoneRequest.getCityCode() +
+                                    " y el pais con id: "+phoneRequest.getCountryCode());
+                        });
 
-        return new Phone(phoneRequest.getNumber(), city, country);
+        return new Phone(phoneRequest.getNumber(), city);
     }
 
     public User findById(Long id){

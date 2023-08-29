@@ -27,10 +27,6 @@ public class Phone {
     @JoinColumn(name="city_code", nullable=false)
     private City city;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="country_code", nullable=false)
-    private Country country;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -41,7 +37,6 @@ public class Phone {
                 "id=" + id +
                 ", number='" + number + '\'' +
                 ", city=" + city +
-                ", country=" + country +
                 ", user=" + user +
                 '}';
     }
@@ -49,9 +44,8 @@ public class Phone {
     public Phone() {
     }
 
-    public Phone(String number, City city, Country country) {
+    public Phone(String number, City city) {
         this.number = number;
         this.city = city;
-        this.country = country;
     }
 }

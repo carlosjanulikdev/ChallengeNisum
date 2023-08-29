@@ -22,12 +22,16 @@ public class City {
     @NotNull(message = "El nombre es obligatorio")
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="country_code", nullable=false)
+    private Country country;
+
     @Override
     public String toString() {
-        return "Country{" +
+        return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", country=" + country +
                 '}';
     }
-
 }
