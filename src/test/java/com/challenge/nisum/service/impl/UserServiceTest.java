@@ -38,6 +38,8 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
+    private JWTService jwtService = Mockito.mock(JWTService.class);
+
     private City cityMock;
 
     private User userMock;
@@ -61,11 +63,13 @@ public class UserServiceTest {
     public void registerOK(){
         when(userRepository.save(any())).thenReturn(userMock);
         when(cityRepository.findByIdAndCountryId(3L, 3L)).thenReturn(Optional.of(cityMock));
+        when(jwtService.generateToken("juan.perez@gmail.com")).thenReturn("tokenMockNisum123456");
 
         UserResponse userResponse = userService.register(userRequest);
 
         Assert.assertNotNull(userResponse.getCreated());
         Assert.assertTrue(userResponse.getIsActive());
+        Assert.assertEquals("tokenMockNisum123456", userResponse.getToken());
     }
 
     @Test
@@ -99,5 +103,4 @@ public class UserServiceTest {
 
         assertEquals(Optional.empty(), foundCity);
     }
-
 }

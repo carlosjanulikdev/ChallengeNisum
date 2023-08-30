@@ -10,6 +10,7 @@ import com.challenge.nisum.repository.UserRepository;
 import com.challenge.nisum.request.PhoneRequest;
 import com.challenge.nisum.request.UserRequest;
 import com.challenge.nisum.response.UserResponse;
+import com.challenge.nisum.service.IJWTService;
 import com.challenge.nisum.service.IUserService;
 import com.challenge.nisum.util.Constants;
 import lombok.SneakyThrows;
@@ -30,6 +31,9 @@ public class UserService implements IUserService {
     private CityRepository cityRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private IJWTService jwtService;
+
 
     @SneakyThrows
     public UserResponse register(UserRequest userRequest) {
@@ -42,6 +46,8 @@ public class UserService implements IUserService {
                                    userRequest.getPhones().stream().map(phoneRequest ->
                                            fromPhoneRequestToPhone(phoneRequest))
                                                    .collect(Collectors.toList()));
+        user.setToken(jwtService.generateToken(user.getEmail()));
+
         userRepository.save(user);
 
         return new UserResponse(user.getId(), user.getName(), user.getCreated(), user.getModified(), user.getLastLogin(),
