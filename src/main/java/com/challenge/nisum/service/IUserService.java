@@ -10,6 +10,5 @@ public interface IUserService {
 
     UserResponse register(UserRequest userRequest);
     User findById(Long id);
-    void deleteById(Long id);
     List<User> findAll();
 }

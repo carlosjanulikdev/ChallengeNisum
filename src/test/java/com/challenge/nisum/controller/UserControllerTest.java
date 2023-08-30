@@ -1,6 +1,5 @@
 package com.challenge.nisum.controller;
 
-import com.challenge.nisum.model.User;
 import com.challenge.nisum.request.UserRequest;
 import com.challenge.nisum.response.UserResponse;
 import com.challenge.nisum.service.IUserService;
@@ -14,9 +13,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

@@ -73,10 +73,6 @@ public class UserService implements IUserService {
         return userRepository.findById(id).get();
     }
 
-    public void deleteById(Long id){
-        userRepository.deleteById(id);
-    }
-
     public List<User> findAll(){
         return (List<User>) userRepository.findAll();
     }

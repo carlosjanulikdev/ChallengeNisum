@@ -32,14 +32,6 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public void deleteById(@PathVariable(required = true) Long id){
-        logger.info("User id to delete:{}", id);
-
-        userService.deleteById(id);
-    }
-
-
     @PostMapping(value = "/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRequest userRequest) {
         logger.info("Create user:{}", userRequest);
