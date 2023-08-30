@@ -24,6 +24,10 @@ public class UserResponse {
     @JsonProperty("is_active")
     private Boolean isActive;
 
+    public UserResponse(){
+
+    }
+
     public UserResponse(Long id, String name, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, String token, Boolean isActive) {
         this.id = id;
         this.name = name;
