@@ -18,7 +18,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -71,7 +70,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByEmailOK(){
-        Mockito.when(userRepository.findByEmail(Mockito.anyString())).thenReturn(Optional.ofNullable(userMock));
+        when(userRepository.findByEmail(Mockito.anyString())).thenReturn(Optional.ofNullable(userMock));
 
         Optional<User> foundUser = userRepository.findByEmail("juan.perez@gmail.com");
 
